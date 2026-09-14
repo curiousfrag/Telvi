@@ -1,0 +1,24 @@
+{
+  "name": "telvi",
+  "version": "1.0.0",
+  "description": "Telvi is a collaborative virtual study-room platform built for learning together online. It combines realtime chat, user profiles, room-based communities, shared YouTube sessions, file and voice-note sharing, Pomodoro study tools, task management, and a multiplayer whiteboard with live cursors",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/curiousfrag/Telvi.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/curiousfrag/Telvi/issues"
+  },
+  "homepage": "https://github.com/curiousfrag/Telvi#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
