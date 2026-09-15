@@ -13,22 +13,36 @@
         <h1>Telvi</h1>
         <p>Learn Together. Anywhere</p>
     </header>
-    <main>
+<main>
+    <section>
+        <h2>Create a Study Room</h2>
 
         <input
             type="text"
             id="room-name"
             placeholder="Enter room name"
-            >
+        >
     
-        <button id="create-room">Create Study Room</button>
-        <button id="join-room">Join Room</button>
-
+        <button  id="create-room">Create Study Room
+        </button>
         <p id="room-result"></p>
-    
+    </section>
+
+    <section>
+        <h2>Join an existing room</h2>
+
+        <input
+            type="text"
+            id="join-code"
+            placeholder="Enter Room Code"
+            maxlength="6"
+        >
+        <button id="join-room">Join Study Room</button>
+        <p id="join-result"></p>
+    </section>
+
     </main>
 
-    
     <script src="client.js"></script>
 </body>
 </html>
