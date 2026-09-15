@@ -34,3 +34,5 @@ app.post("/api/rooms", (req, res) => {
  app.listen(PORT,() => {
     console.log(`Telvi is running on http://localhost:${PORT}`);
  });
+
+ module.exports = app;
