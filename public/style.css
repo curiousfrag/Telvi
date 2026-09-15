@@ -1,9 +1,23 @@
 body {
     margin: 0;
-    padding: 40px;
+    padding: 10px;
+
+    min-height: 100vh;
 
     background: #f7f3ea;
     color: black;
 
     font-family: Lucida, cursive;
+
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+
+    display: flex;
+    gap: 10px;
 }

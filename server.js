@@ -2,10 +2,26 @@ const express = require("express");
 const app = express();
 const PORT = 3000;
 
+const rooms = [];
+
+function generateRoomCode() {
+   return Math.random().toString(36).substring(2, 8).toUpperCase();
+}
+
+app.use(express.json());
 app.use(express.static("public"));
 
-app.get("/", (req, res) => {
-    res.send("IT WORKS!");
+app.post("/api/rooms", (req, res) => {
+   const roomCode = generateRoomCode();
+
+   const room = {
+      code: roomCode,
+      name: "New Study Room"
+   };
+
+   rooms.push(room);
+
+   res.json(room);;
 });
 
  app.listen(PORT,() => {
