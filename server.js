@@ -12,16 +12,23 @@ app.use(express.json());
 app.use(express.static("public"));
 
 app.post("/api/rooms", (req, res) => {
+   const roomName = req.body.name;
+
+   if (!roomName || roomName.trim() === "") {
+      return res.status(400).json({
+         error: "Room name is required"
+      });
+   }
    const roomCode = generateRoomCode();
 
    const room = {
       code: roomCode,
-      name: "New Study Room"
+      name: roomName.trim()
    };
 
    rooms.push(room);
 
-   res.json(room);;
+   res.status(201).json(room);
 });
 
  app.listen(PORT,() => {
