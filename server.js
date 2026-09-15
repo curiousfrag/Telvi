@@ -31,8 +31,14 @@ app.post("/api/rooms", (req, res) => {
    res.status(201).json(room);
 });
 
+app.get("/", (req, res) => {
+    res.sendFile(__dirname + "/public/index.html");
+});
+
+module.exports = app;
+
  app.listen(PORT,() => {
     console.log(`Telvi is running on http://localhost:${PORT}`);
  });
 
- module.exports = app;
+ 
