@@ -42,6 +42,6 @@ module.exports = app;
 
 if (process.env.NODE_ENV !== "production") {
    app.listen(PORT, () => {
-      console.log(`Trlvi is running on http://localhost:${PORT}`);
+      console.log(`Telvi is running on http://localhost:${PORT}`);
    });
 }
