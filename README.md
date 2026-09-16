@@ -11,3 +11,5 @@ Telvi is a collaborative virtual study-room platform built for learning together
 - Added static frontend
 - Added initial HTML/CSS/JS
 
+- Created Landing page for telvi 
+- deployed Telvi on vercel 

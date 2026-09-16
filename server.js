@@ -1,15 +1,21 @@
 const express = require("express");
+const path = require("path");
+
 const app = express();
 const PORT = 3000;
 
 const rooms = [];
 
 function generateRoomCode() {
-   return Math.random().toString(36).substring(2, 8).toUpperCase();
+   return Math.random().tostrin(36).substring(2, 8).toUpperCase();
 }
 
 app.use(express.json());
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
+
+app.get("/", (req, res) => {
+   res.sendFile(path.join(__dirname, "public", "index.html"));
+});
 
 app.post("/api/rooms", (req, res) => {
    const roomName = req.body.name;
@@ -19,9 +25,10 @@ app.post("/api/rooms", (req, res) => {
          error: "Room name is required"
       });
    }
+
    const roomCode = generateRoomCode();
 
-   const room = {
+   const room ={
       code: roomCode,
       name: roomName.trim()
    };
@@ -31,14 +38,10 @@ app.post("/api/rooms", (req, res) => {
    res.status(201).json(room);
 });
 
-app.get("/", (req, res) => {
-    res.sendFile(__dirname + "/public/index.html");
-});
-
 module.exports = app;
 
- app.listen(PORT,() => {
-    console.log(`Telvi is running on http://localhost:${PORT}`);
- });
-
- 
+if (process.env.NODE_ENV !== "production") {
+   app.listen(PORT, () => {
+      console.log(`Trlvi is running on http://localhost:${PORT}`);
+   });
+}
