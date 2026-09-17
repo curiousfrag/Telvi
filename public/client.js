@@ -1,3 +1,5 @@
+const themeToggle = document.getElementById("theme-toggle");
+
 const createRoomButton = document.getElementById("create-room");
 const roomResult = document.getElementById("room-result");
 const roomNameInput = document.getElementById("room-name");
@@ -7,14 +9,27 @@ const joinCodeInput = document.getElementById("join-code");
 const joinResult = document.getElementById("join-result");
 
 
-// ============================
-// CREATE ROOM
-// ============================
+themeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+    
+    const darkModeEnabled = document.body.classList.contains("dark");
+
+    localStorage.setItem("darkMode", darkModeEnabled);
+
+    themeToggle.textContent = darkModeEnabled ? "Light mode" : "Dark mode";
+});
+
+const savedTheme = localStorage.getItem("darkMode");
+
+if (savedTheme === "true") {
+    document.body.classList.add("dark");
+    themeToggle.textContent = "Light mode";
+}
 
 createRoomButton.addEventListener("click", async () => {
     const roomName = roomNameInput.value;
 
-    // Check that the user entered a room name
+    
     if (roomName.trim() === "") {
         roomResult.textContent = "Please enter a room name.";
         return;
@@ -35,7 +50,7 @@ createRoomButton.addEventListener("click", async () => {
 
         const room = await response.json();
 
-        // Handle server errors
+        
         if (!response.ok) {
             roomResult.textContent = room.error || "Could not create room.";
             return;
@@ -52,14 +67,12 @@ createRoomButton.addEventListener("click", async () => {
 });
 
 
-// ============================
-// JOIN ROOM
-// ============================
+
 
 joinRoomButton.addEventListener("click", async () => {
     const roomCode = joinCodeInput.value.trim().toUpperCase();
 
-    // Check that the user entered a room code
+    
     if (roomCode === "") {
         joinResult.textContent = "Please enter a room code.";
         return;
@@ -80,7 +93,7 @@ joinRoomButton.addEventListener("click", async () => {
 
         const room = await response.json();
 
-        // Handle server errors
+        
         if (!response.ok) {
             joinResult.textContent = room.error || "Could not join room.";
             return;
