@@ -15,12 +15,17 @@ body.dark{
     --primary: #ec3750;
 }
 .theme-toggle {
-    width: auto;
+    width: 44px;
+    height: 44px;
     position: absolute;
     top: 20px;
     right: 20px;
 
-    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
 
     background: var(--surface);
     color:var(--text);
@@ -30,6 +35,20 @@ body.dark{
 
     box-shadow: none;
 
+    font-size: 20px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition: 
+        transform 0.15s ease,
+        background 0.15s ease;
+
+}
+
+.theme-toggle:hover {
+    transform: translateY(-2px);
+    
 }
 
 
