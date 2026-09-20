@@ -158,3 +158,108 @@ button:active {
 .theme-toggle:hover {
     transform: translateY(-2px);
 }
+.landing-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 70px 20px 40px;
+}
+
+.main-header {
+    margin-bottom: 42px;
+    text-align: center;
+}
+
+.main-header h1 {
+    margin: 0;
+
+    font-size: 56px;
+    font-weight: 900;
+    letter-spacing: -3px;
+}
+
+.main-header h1::after {
+    content: ".";
+    color: var(--primary);
+}
+
+.main-header p {
+    margin-top: 12px;
+
+    color: var(--muted-text);
+    font-size: 16px;
+}
+
+.landing-container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+
+    width: 100%;
+    max-width: 760px;
+}
+
+.room-card {
+    padding: 28px;
+
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+
+    box-shadow: var(--soft-shadow);
+}
+
+.room-card h2 {
+    margin: 0 0 12px;
+    font-size: 22px;
+}
+
+.card-description {
+    min-height: 48px;
+
+    margin-bottom: 22px;
+
+    color: var(--muted-text);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.room-card input {
+    width: 100%;
+
+    padding: 13px;
+    margin-bottom: 12px;
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    background: var(--surface-soft);
+    color: var(--text);
+
+    box-shadow: var(--inset-shadow);
+}
+
+.room-card input::placeholder,
+.message-input-area input::placeholder {
+    color: var(--muted-text);
+}
+
+.room-card input:focus {
+    border-color: var(--primary);
+    outline: none;
+}
+
+.room-card .primary-button {
+    width: 100%;
+}
+
+.result-message {
+    min-height: 18px;
+
+    margin: 12px 0 0;
+
+    color: var(--muted-text);
+    font-size: 13px;
+}
+ 
