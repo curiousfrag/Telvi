@@ -3,50 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telvi</title>
-
+    <title>Telvi - Learn Together. Anywhere</title>
 
     <link rel="stylesheet" href="style.css">
 
 </head>
-<body>
+<body class="landing-page">
 
-    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch theme">
-    🌙
-    </button>
-    
-    <header>
+    <button 
+    id="theme-toggle"
+    class="theme-toggle"
+    type="button"
+    aria-label="Toggle Dark mode">
+    ☾
+</button>
+
+    <header class="main-header">
         <h1>Telvi</h1>
         <p>Learn Together. Anywhere</p>
     </header>
-<main>
-    <section>
-        <h2>Create a Study Room</h2>
 
-        <input
+    <main class="landing-container">
+
+        <section class="room-card">
+            <h2>Create a Study Room</h2>
+
+            <p class="card-description">Start a new study room and invite your friends to study together
+            </p>
+            <input
             type="text"
-            id="room-name"
+            id="room-card"
             placeholder="Enter room name"
-        >
-    
-        <button  id="create-room">Create Study Room
-        </button>
-        <p id="room-result"></p>
-    </section>
+            maxLength="40">
 
-    <section>
-        <h2>Join an existing room</h2>
+            <button id="create-room"
+            class="primary-button">
+                Create Study Room
+            </button>
+            <p id="room-result" class=" result-message"></p>
+        </section>
 
-        <input
-            type="text"
-            id="join-code"
-            placeholder="Enter Room Code"
-            maxlength="6"
-        >
-        <button id="join-room">Join Study Room</button>
-        <p id="join-result"></p>
-    </section>
+        <section class="room-card">
+            <h2>Join a Study Room</h2>
 
+            <p class="card-description">
+                Enter a room code to join an existing study session.
+            </p>
+
+            <input 
+                type="text"
+                id="join-code"
+                placeholder="Enter Room Code"
+                maxLength="6">
+            <button id="join-room" class="primary-button">
+                Join Study Room
+            </button>
+
+            <p id="join-result" class="result-message"></p>
+        </section>
     </main>
 
     <script src="client.js"></script>
