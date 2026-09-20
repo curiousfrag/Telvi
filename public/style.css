@@ -1,3 +1,4 @@
+
 :root {
     --background: #f7f3ea;
     --surface: #ffffff;
@@ -44,6 +45,7 @@ body.dark {
         inset 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+
 * {
     box-sizing: border-box;
 }
@@ -76,6 +78,7 @@ input:focus-visible {
     outline: 2px solid var(--primary);
     outline-offset: 3px;
 }
+
 
 button {
     transition:
@@ -133,7 +136,8 @@ button:active {
 .secondary-button:active,
 .danger-button:active {
     box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.12);
-} 
+}
+
 
 .theme-toggle {
     position: fixed;
@@ -158,6 +162,8 @@ button:active {
 .theme-toggle:hover {
     transform: translateY(-2px);
 }
+
+
 .landing-page {
     display: flex;
     flex-direction: column;
@@ -262,15 +268,12 @@ button:active {
     color: var(--muted-text);
     font-size: 13px;
 }
- 
+
+
 .room-page {
     padding: 30px;
 }
 
-
-/* =====================================
-   ROOM HEADER
-   ===================================== */
 
 .room-header {
     position: relative;
@@ -305,6 +308,7 @@ button:active {
     font-size: 14px;
 }
 
+
 .room-brand {
     position: absolute;
     left: 50%;
@@ -325,8 +329,6 @@ button:active {
 }
 
 
-/* Room header buttons */
-
 .room-header-actions {
     display: flex;
     align-items: center;
@@ -344,14 +346,14 @@ button:active {
     box-shadow: var(--soft-shadow);
 }
 
-.room-container { 
+
+.room-container {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 280px;
     gap: 24px;
 
     max-width: 1250px;
     margin: 0 auto;
-
 }
 
 .chat-panel,
@@ -361,7 +363,6 @@ button:active {
     border-radius: 18px;
 
     box-shadow: var(--soft-shadow);
-
 }
 
 .chat-panel {
@@ -369,8 +370,8 @@ button:active {
     flex-direction: column;
 
     min-height: 600px;
-    overflow: hidden;
 
+    overflow: hidden;
 }
 
 .panel-header {
@@ -379,8 +380,8 @@ button:active {
     align-items: center;
 
     padding: 20px;
-    border-bottom: 1px solid var(--border);
 
+    border-bottom: 1px solid var(--border);
 }
 
 .panel-header h2 {
@@ -392,6 +393,7 @@ button:active {
     color: var(--muted-text);
     font-size: 12px;
 }
+
 
 .chat-messages {
     display: flex;
@@ -412,7 +414,6 @@ button:active {
 
     color: var(--muted-text);
     text-align: center;
-
 }
 
 .message-wrapper {
@@ -421,18 +422,20 @@ button:active {
     align-items: flex-start;
 
     max-width: 80%;
-
 }
 
 .chat-message {
     margin: 0;
     padding: 12px 15px;
+
     border-radius: 12px;
+
     background: var(--surface-soft);
     color: var(--text);
-    overflow-wrap: anywhere;
-    box-shadow: var(--inset-shadow);
 
+    overflow-wrap: anywhere;
+
+    box-shadow: var(--inset-shadow);
 }
 
 .message-time {
@@ -449,7 +452,6 @@ button:active {
     padding: 16px;
 
     border-top: 1px solid var(--border);
-
 }
 
 .message-input-area input {
@@ -457,29 +459,30 @@ button:active {
     min-width: 0;
 
     padding: 12px;
-    border-top: 1px solid var(--border);
+
+    border: 1px solid var(--border);
     border-radius: 10px;
+
     background: var(--surface-soft);
     color: var(--text);
-    box-shadow: var(--inset-shadow);
 
+    box-shadow: var(--inset-shadow);
 }
 
 .message-input-area input:focus {
     outline: none;
     border-color: var(--primary);
-
 }
+
 
 .side-panel {
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     gap: 20px;
-
 }
 
 .feature-card {
-    padding:22px ;
+    padding: 22px;
 }
 
 .feature-card h3 {
@@ -490,20 +493,99 @@ button:active {
     color: var(--muted-text);
     font-size: 14px;
     line-height: 1.5;
-
 }
 
 .feature-card strong {
     display: block;
+
     padding: 12px;
+
     border-radius: 8px;
+
     background: var(--surface-soft);
+
     font-size: 20px;
     letter-spacing: 3px;
-    text-align:center;
-    box-shadow: var(--inset-shadow);
+    text-align: center;
 
+    box-shadow: var(--inset-shadow);
 }
 
 
+@media (max-width: 800px) {
 
+    .landing-container {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+    }
+
+    .room-container {
+        grid-template-columns: 1fr;
+    }
+
+    .side-panel {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .room-header {
+        align-items: flex-start;
+        flex-direction: column;
+
+        padding-top: 75px;
+    }
+
+    .room-brand {
+        top: 20px;
+        font-size: 28px;
+    }
+
+    .room-header-actions {
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    .room-header-actions .theme-toggle {
+        display: none;
+    }
+}
+
+
+@media (max-width: 520px) {
+
+    .landing-page {
+        padding: 70px 15px 30px;
+    }
+
+    .main-header h1 {
+        font-size: 46px;
+    }
+
+    .room-page {
+        padding: 15px;
+    }
+
+    .room-header {
+        padding: 70px 15px 20px;
+    }
+
+    .room-info h1 {
+        font-size: 24px;
+    }
+
+    .room-header-actions {
+        width: 100%;
+    }
+
+    .room-header-actions button {
+        flex: 1;
+    }
+
+    .side-panel {
+        grid-template-columns: 1fr;
+    }
+
+    .message-input-area {
+        flex-direction: column;
+    }
+}
