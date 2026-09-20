@@ -471,4 +471,39 @@ button:active {
 
 }
 
+.side-panel {
+    display: flex;
+    flex-direction:column;
+    gap: 20px;
+
+}
+
+.feature-card {
+    padding:22px ;
+}
+
+.feature-card h3 {
+    margin-top: 0;
+}
+
+.feature-card p {
+    color: var(--muted-text);
+    font-size: 14px;
+    line-height: 1.5;
+
+}
+
+.feature-card strong {
+    display: block;
+    padding: 12px;
+    border-radius: 8px;
+    background: var(--surface-soft);
+    font-size: 20px;
+    letter-spacing: 3px;
+    text-align:center;
+    box-shadow: var(--inset-shadow);
+
+}
+
+
 
