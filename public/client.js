@@ -70,6 +70,10 @@ createRoomButton.addEventListener("click", async () => {
 
         roomResult.textContent = `Your room code is ${room.code}`;
 
+        localStorage.setItem("currentRoom", JSON.stringify(room));
+
+        window.location.href = "/room.html";
+
         console.log("Room created:", room);
     } catch (error) {
         console.error("Create room error:", error);
@@ -107,6 +111,10 @@ joinRoomButton.addEventListener("click", async () => {
 
         joinResult.textContent = `Joined ${room.name}!`;
 
+        localStorage.setItem("currentRoom", JSON.stringify(room));
+
+        window.location.href = "/room.html";
+        
         console.log("Joined room:", room);
     } catch (error) {
         console.error("Join room error:", error);
