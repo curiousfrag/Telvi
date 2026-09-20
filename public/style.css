@@ -373,3 +373,22 @@ button:active {
 
 }
 
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px;
+    border-bottom: 1px solid var(--border);
+
+}
+
+.panel-header h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.online-indicator {
+    color: var(--muted-text);
+    font-size: 12px;
+}
