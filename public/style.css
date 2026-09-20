@@ -343,3 +343,33 @@ button:active {
 
     box-shadow: var(--soft-shadow);
 }
+
+.room-container { 
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 280px;
+    gap: 24px;
+
+    max-width: 1250px;
+    margin: 0 auto;
+
+}
+
+.chat-panel,
+.feature-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+
+    box-shadow: var(--soft-shadow);
+
+}
+
+.chat-panel {
+    display: flex;
+    flex-direction: column;
+
+    min-height: 600px;
+    overflow: hidden;
+
+}
+
