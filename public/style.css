@@ -21,7 +21,6 @@
         inset 2px 2px 5px rgba(0, 0, 0, 0.035);
 }
 
-
 body.dark {
     --background: #171717;
     --surface: #242424;
@@ -134,5 +133,28 @@ button:active {
 .secondary-button:active,
 .danger-button:active {
     box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.12);
+} 
+
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+
+    width: 42px;
+    height: 42px;
+
+    border: 1px solid var(--border);
+    border-radius: 50%;
+
+    background: var(--surface);
+    color: var(--text);
+
+    font-size: 20px;
+
+    box-shadow: var(--soft-shadow);
 }
 
+.theme-toggle:hover {
+    transform: translateY(-2px);
+}
