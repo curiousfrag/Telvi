@@ -21,3 +21,25 @@
         inset 2px 2px 5px rgba(0, 0, 0, 0.035);
 }
 
+body.dark {
+    --background: #171717;
+    --surface: #242424;
+    --surface-soft: #303030;
+    --text: #f5f5f5;
+    --muted-text: #b5b5b5;
+    --border: #444444;
+
+    --primary: #f5f5f5;
+    --primary-hover: #d6d6d6;
+
+    --danger: #ff6b5e;
+
+    --shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+
+    --soft-shadow:
+        8px 8px 18px rgba(0, 0, 0, 0.25),
+        -4px -4px 12px rgba(255, 255, 255, 0.02);
+
+    --inset-shadow:
+        inset 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
