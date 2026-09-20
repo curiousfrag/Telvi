@@ -263,3 +263,44 @@ button:active {
     font-size: 13px;
 }
  
+.room-page {
+    padding: 30px;
+}
+
+
+/* =====================================
+   ROOM HEADER
+   ===================================== */
+
+.room-header {
+    position: relative;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+
+    max-width: 1250px;
+    min-height: 90px;
+
+    margin: 0 auto 28px;
+    padding: 20px 24px;
+
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+
+    box-shadow: var(--soft-shadow);
+}
+
+.room-info h1 {
+    margin: 0 0 8px;
+    font-size: 28px;
+}
+
+.room-info p {
+    margin: 0;
+
+    color: var(--muted-text);
+    font-size: 14px;
+}
