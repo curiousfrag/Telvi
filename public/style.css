@@ -441,3 +441,34 @@ button:active {
     color: var(--muted-text);
     font-size: 11px;
 }
+
+.message-input-area {
+    display: flex;
+    gap: 10px;
+
+    padding: 16px;
+
+    border-top: 1px solid var(--border);
+
+}
+
+.message-input-area input {
+    flex: 1;
+    min-width: 0;
+
+    padding: 12px;
+    border-top: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface-soft);
+    color: var(--text);
+    box-shadow: var(--inset-shadow);
+
+}
+
+.message-input-area input:focus {
+    outline: none;
+    border-color: var(--primary);
+
+}
+
+
