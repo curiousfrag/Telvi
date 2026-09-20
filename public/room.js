@@ -1,10 +1,14 @@
+
 const savedRoom = localStorage.getItem("currentRoom");
+
 if (!savedRoom) {
     window.location.href = "/";
 }
+
 const room = JSON.parse(savedRoom);
-const roomTite = document.getElementById("room-title");
-const roomCodeDispay = document.getElementById("room-code-display");
+
+const roomTitle = document.getElementById("room-title");
+const roomCodeDisplay = document.getElementById("room-code-display");
 const sideRoomCode = document.getElementById("side-room-code");
 
 roomTitle.textContent = room.name;
@@ -14,21 +18,24 @@ sideRoomCode.textContent = room.code;
 
 
 const themeToggleButton = document.getElementById("theme-toggle");
+
 function updateThemeButton() {
     const isDarkMode = document.body.classList.contains("dark");
 
-    themeToggleButton.textContent = isDarkMode ? "☀" : "☾"
+    themeToggleButton.textContent = isDarkMode ? "☀" : "☾";
+
     themeToggleButton.setAttribute(
         "aria-label",
         isDarkMode ? "Switch to light mode" : "Switch to dark mode"
     );
-
 }
 
 const savedTheme = localStorage.getItem("telviTheme");
-if (savedTheme === "dark"); {
+
+if (savedTheme === "dark") {
     document.body.classList.add("dark");
 }
+
 updateThemeButton();
 
 themeToggleButton.addEventListener("click", () => {
@@ -37,11 +44,13 @@ themeToggleButton.addEventListener("click", () => {
     const isDarkMode = document.body.classList.contains("dark");
 
     localStorage.setItem(
-        "telviTheme", isDarkMode ? "dark" : "light"
+        "telviTheme",
+        isDarkMode ? "dark" : "light"
     );
 
     updateThemeButton();
 });
+
 
 const copyCodeButton = document.getElementById("copy-code");
 
@@ -59,11 +68,66 @@ copyCodeButton.addEventListener("click", async () => {
         console.error("Could not copy room code:", error);
         copyCodeButton.textContent = "Copy failed";
     }
-}); 
-
-const leaveRoomButton = document.getElementById("leave-room");
-leaveRoomButton.addEventListener ("click",() => {
-    localStorage.removeItem("currentRoom");
-    window.location.href = "/;
 });
 
+
+const leaveRoomButton = document.getElementById("leave-room");
+
+leaveRoomButton.addEventListener("click", () => {
+    localStorage.removeItem("currentRoom");
+    window.location.href = "/";
+});
+
+
+const messageInput = document.getElementById("message-input");
+const sendMessageButton = document.getElementById("send-message");
+const chatMessages = document.getElementById("chat-messages");
+
+function sendMessage() {
+    const messageText = messageInput.value.trim();
+
+    if (messageText === "") {
+        return;
+    }
+
+    const emptyChatMessage = document.querySelector(
+        ".empty-chat-message"
+    );
+
+    if (emptyChatMessage) {
+        emptyChatMessage.remove();
+    }
+
+    const messageWrapper = document.createElement("div");
+    messageWrapper.classList.add("message-wrapper");
+
+    const messageElement = document.createElement("p");
+    messageElement.classList.add("chat-message");
+    messageElement.textContent = messageText;
+
+    const timestampElement = document.createElement("span");
+    timestampElement.classList.add("message-time");
+
+    timestampElement.textContent = new Date().toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit"
+    });
+
+    messageWrapper.appendChild(messageElement);
+    messageWrapper.appendChild(timestampElement);
+
+    chatMessages.appendChild(messageWrapper);
+
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    messageInput.value = "";
+    messageInput.focus();
+}
+
+sendMessageButton.addEventListener("click", sendMessage);
+
+messageInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+        sendMessage();
+    }
+});
