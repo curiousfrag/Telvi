@@ -304,3 +304,42 @@ button:active {
     color: var(--muted-text);
     font-size: 14px;
 }
+
+.room-brand {
+    position: absolute;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    color: var(--text);
+
+    font-size: 30px;
+    font-weight: 900;
+    letter-spacing: -1.5px;
+
+    white-space: nowrap;
+}
+
+.brand-dot {
+    color: var(--primary);
+}
+
+
+/* Room header buttons */
+
+.room-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding-right: 0;
+}
+
+.room-header-actions .theme-toggle {
+    position: static;
+
+    width: 40px;
+    height: 40px;
+
+    box-shadow: var(--soft-shadow);
+}
