@@ -61,3 +61,9 @@ copyCodeButton.addEventListener("click", async () => {
     }
 }); 
 
+const leaveRoomButton = document.getElementById("leave-room");
+leaveRoomButton.addEventListener ("click",() => {
+    localStorage.removeItem("currentRoom");
+    window.location.href = "/;
+});
+
