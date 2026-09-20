@@ -1,0 +1,23 @@
+:root {
+    --background: #f7f3ea;
+    --surface: #ffffff;
+    --surface-soft: #f1ede4;
+    --text: #171717;
+    --muted-text: #777777;
+    --border: #dedad1;
+
+    --primary: #171717;
+    --primary-hover: #3b3b3b;
+
+    --danger: #c0392b;
+
+    --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+
+    --soft-shadow:
+        8px 8px 18px rgba(0, 0, 0, 0.045),
+        -6px -6px 16px rgba(255, 255, 255, 0.7);
+
+    --inset-shadow:
+        inset 2px 2px 5px rgba(0, 0, 0, 0.035);
+}
+
