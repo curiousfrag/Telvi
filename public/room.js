@@ -43,4 +43,21 @@ themeToggleButton.addEventListener("click", () => {
     updateThemeButton();
 });
 
+const copyCodeButton = document.getElementById("copy-code");
+
+copyCodeButton.addEventListener("click", async () => {
+    try {
+        await navigator.clipboard.writeText(room.code);
+
+        copyCodeButton.textContent = "Copied!";
+
+        setTimeout(() => {
+            copyCodeButton.textContent = "Copy Room Code";
+        }, 1500);
+
+    } catch (error) {
+        console.error("Could not copy room code:", error);
+        copyCodeButton.textContent = "Copy failed";
+    }
+}); 
 
