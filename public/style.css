@@ -21,6 +21,7 @@
         inset 2px 2px 5px rgba(0, 0, 0, 0.035);
 }
 
+
 body.dark {
     --background: #171717;
     --surface: #242424;
@@ -134,3 +135,4 @@ button:active {
 .danger-button:active {
     box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.12);
 }
+
