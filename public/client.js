@@ -80,7 +80,7 @@ if (createRoomButton) {
 
         localStorage.setItem("currentRoom", JSON.stringify(room));
 
-        window.location.href = "/room";
+        window.location.href = "/room.html";
     });
 }
 
@@ -106,7 +106,7 @@ if (joinRoomButton) {
 
         localStorage.setItem("currentRoom", JSON.stringify(room));
 
-        window.location.href = "/room";
+        window.location.href = "/room.html";
     });
 }
 if (joinCodeInput) {
