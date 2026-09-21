@@ -72,5 +72,6 @@ run this command in the terminal
 
 visit : http://localhost:3000
 
-
+<img width="1198" height="674" alt="Screenshot 2026-09-21 070305" src="https://github.com/user-attachments/assets/57615c3f-57a7-40b3-8222-4a73eb974d93" />
+<img width="1203" height="674" alt="Screenshot 2026-09-21 070357" src="https://github.com/user-attachments/assets/921180be-c87f-4586-a318-b43d8ccbbbdf" />
 
