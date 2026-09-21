@@ -47,8 +47,7 @@ You can either run Telvi locally on your computer or you can visit [Telvi](https
 ## Instructions for Running the project locally :
 
 ### 1- Clone the repository 
-
-    in your terminal window paste this command :
+in your terminal window paste this command :
 
     git clone https://github.com/curiousfrag/Telvi.git
 
