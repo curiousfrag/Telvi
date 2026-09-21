@@ -3,18 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Study Room — Telvi</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body class="room-page">
+
+    
     <header class="room-header">
-        <div>
+
+        <div class="room-info">
             <h1 id="room-title">Study Room</h1>
-            <p id="room-code-display">Room Code: ------</p>
+            <p id="room-code-display">Room code: ------</p>
         </div>
 
+        
+        <div class="room-brand" aria-label="Telvi">
+            <span>Telvi</span><span class="brand-dot">.</span>
+        </div>
+
+        
         <div class="room-header-actions">
-            <button 
+
+            <button
                 id="theme-toggle"
                 class="theme-toggle"
                 type="button"
@@ -22,48 +35,103 @@
                 ☾
             </button>
 
-            <button id="copy-code" class= "secondary-button">
+            <button
+                id="copy-code"
+                class="secondary-button"
+                type="button">
                 Copy Room Code
             </button>
 
-            <button id="leave-room" class="danger-button">
+            <button
+                id="leave-room"
+                class="danger-button"
+                type="button">
                 Leave Room
             </button>
+
         </div>
+
     </header>
+
+
+    
     <main class="room-container">
+
+        
         <section class="chat-panel">
+
             <div class="panel-header">
-                <h2>Roomm Chat</h2>
-                <span class="online-inndicator">
+                <h2>Room Chat</h2>
+                <span class="online-indicator">
                     ● Local session
                 </span>
             </div>
 
-            <div id="chat-messages" class="chat-messages">
+            <div
+                id="chat-messages"
+                class="chat-messages">
+
                 <p class="empty-chat-message">
-                    No messages yet. Start the converstation!
+                    No messages yet. Start the conversation!
                 </p>
+
             </div>
+
+            
             <div class="message-input-area">
-                <input 
+
+                <input
                     type="text"
                     id="message-input"
                     placeholder="Type a message..."
-                    maxlength="500">
-                <button id="send-message" class="primary-button">
+                    maxlength="500"
+                    autocomplete="off">
+
+                <button
+                    id="send-message"
+                    class="primary-button"
+                    type="button">
                     Send
                 </button>
+
             </div>
+
         </section>
+
+
+        
         <aside class="side-panel">
+
             <section class="feature-card">
                 <h3>Study Tools</h3>
-                <p>More Collaborative tools are comming soon...</p>
+
+                <p>
+                    More collaborative tools are coming soon.
+                </p>
             </section>
+
+
+            <section class="feature-card">
+
+                <h3>Room Information</h3>
+
+                <p>
+                    Share your room code with your study partners.
+                </p>
+
+                <strong id="side-room-code">
+                    ------
+                </strong>
+
+            </section>
+
         </aside>
+
     </main>
 
+
+  
     <script src="room.js"></script>
+
 </body>
 </html>
