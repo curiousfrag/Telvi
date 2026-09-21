@@ -1,33 +1,77 @@
-# Telvi
+# Telvi 
+**Learn together. Anywhere**
 
-**Learn Together. Anywhere.**
+So Telvi is a collaborative Web Application where you and your friends can chat, study, call or even watch lectures together. We're building this specifically for students so they can study distraction free with their friends and actuall enjoy studying.
 
-Telvi is a collaborative study platform designed to help people learn, communicate, and work together online.
+Telvi will be seriously helpful in times where you need to lock-in for those mid sems and final exams.
 
-## v0.1 - Foundation
+We're planning on integrating many academic specific features such as pomodoro sessions, a personalized syllabus tracker, habit tracker, custom notes and a lot of such features in the up and coming updates.
 
-this is the the first developmen milestone of Telvi.
+## Current Features:
+- Create and join a unique chat room
+- You can name your Chat Room anything
+- View room details
+- Responsive Layout 
+- Clean and interactive UI 
+- Toggle-able Dark mode  
 
-### What We Built 
+>**Current status:** The chat system is currently locak only. real time messaging between different users will be implemented in future updates.
 
-- Initialized the project with Node.js and npm 
-- Added Express as the backend framework
-- Created a local development server
-- Added a frontend using HTML, CSS, and JavaScript
-- Built the initial Telvi landing page 
-- Added room creation
-- Added Customizable study room names
-- Added randomly generated 6-character unique room codes
-- Added Room joining
-- Added Frontend-ti-backend communication using `fetch()`
-- Added basic error handling
-- Deployed the project on vercel
+## Tech Stack 
+- Frontend: HTML, CSS, JavaScript
+- Backend: Node.js, Express
+- Deployment: Vercel
+- Version Control: Git and GitHub
 
-### Current Tech Stack
+##  Project Structure
 
-- HTML
-- CSS
-- JavaScript
-- Node.js
-- Express
-- Vercel
+```text
+Telvi/
+├── public/
+│   ├── index.html
+│   ├── style.css
+│   ├── client.js
+│   ├── room.html
+│   └── room.js
+│
+├── server.js
+├── package.json
+├── package-lock.json
+├── .gitignore
+├── LICENSE
+└── README.md
+```
+## How to access?
+You can either run Telvi locally on your computer or you can visit [Telvi](https://telvi.vercel.app/) to access it over internet.
+
+## Instructions for Running the project locally :
+
+### 1- Clone the repository 
+
+    in your terminal window paste this command :
+
+    git clone https://github.com/curiousfrag/Telvi.git
+
+
+### 2- Open the Project folder
+
+in your terminal window run this command :
+
+        cd Telvi
+
+### 3- install dependencies 
+run this command in the terminal
+    
+        npm install
+
+### 4- start the development server
+run this command in the terminal
+        
+        node server.js
+
+### 5- open Telvi
+
+visit : http://localhost:3000
+
+
+
