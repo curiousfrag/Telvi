@@ -72,6 +72,18 @@ run this command in the terminal
 
 visit : http://localhost:3000
 
+
+### here are some screenshots of the ui of Telvi 
 <img width="1198" height="674" alt="Screenshot 2026-09-21 070305" src="https://github.com/user-attachments/assets/57615c3f-57a7-40b3-8222-4a73eb974d93" />
 <img width="1203" height="674" alt="Screenshot 2026-09-21 070357" src="https://github.com/user-attachments/assets/921180be-c87f-4586-a318-b43d8ccbbbdf" />
 
+## Project Goals 
+
+We aim to create a simple and comfortable digital environment where students can study together without much distraction, share resources, collaborate onn academic projects, and stay focused overall.
+
+## License 
+
+This Project is licensed under the MIT license. Check out the [LICENSE](LICENSE) file for more information.
+
+---
+Keep Learning :)
