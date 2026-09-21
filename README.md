@@ -90,7 +90,7 @@ This Project is licensed under the MIT license. Check out the [LICENSE](LICENSE)
 ## Credits: 
 
 [CuriousFrag](https://github.com/curiousfrag) | [Ragh7av](https://github.com/ragh7av)
-[Instagram|CuriousFrag](https://www.instagram.com/arya4ya) | [Instagram|Ragh7av](https://www.instagram.com/ragh7av)
+
 ---
 Keep Learning :)
 
