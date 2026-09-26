@@ -1,14 +1,16 @@
 const express = require("express");
 const path = require("path");
+const http = require("http");
+const { server } = require("socket.io");
 
 const app = express();
-const PORT = 3000;
+const server = http.createServer(app);
+const io = new Server(server);
 
-// Temporary storage for rooms.
-// This will eventually be replaced with PostgreSQL.
-const rooms = [];
+ const  PORT = process.env.PORT || 3000;
 
-// Generate a random 6-character room code
+ const rooms = [];
+
 function generateRoomCode() {
     return Math.random()
         .toString(36)
@@ -16,31 +18,29 @@ function generateRoomCode() {
         .toUpperCase();
 }
 
-// Middleware
+
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
-// Serve the homepage
+
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-// Create a study room
+
 app.post("/api/rooms", (req, res) => {
     const roomName = req.body.name;
 
-    // Make sure a room name was provided
+
     if (!roomName || roomName.trim() === "") {
         return res.status(400).json({
             error: "Room name is required"
         });
     }
 
-    const roomCode = generateRoomCode();
-
     const room = {
-        code: roomCode,
-        name: roomName.trim()
+        name: roomName.trim(),
+        code: generateRoomCode()
     };
 
     rooms.push(room);
@@ -48,7 +48,6 @@ app.post("/api/rooms", (req, res) => {
     res.status(201).json(room);
 });
 
-// Join an existing study room
 app.post("/api/rooms/join", (req, res) => {
     const roomCode = req.body.code;
 
@@ -71,8 +70,52 @@ app.post("/api/rooms/join", (req, res) => {
     res.json(room);
 });
 
-// Export the Express app
-module.exports = app;
+io.on("connection", (socket) => {
+    console.log("A user connected:", socket.id);
+
+    socket.on("join-room", (roomCode) => {
+        if (typeof roomCode !== "string") {
+            return;
+        }
+
+        const normalizedCode = roomCode.trim().toUpperCase();
+        if (normalizedCode.length !== 6) {
+            return;
+        }
+
+        socket.join(normalizedCode);
+        socket.data.roomCode = normalizedCode;
+
+        console.log(
+            `${socket.id} joined room ${normalizedCode}`
+        );
+    });
+
+    socket.on("send-message", (messageData) => {
+        if (!messageData || typeof messageData !== "object") {
+            return;
+        }
+        const roomCode = socket.data.roomCode; 
+        const messageText = messageData.text;
+
+        if (
+            !roomCode || 
+            typeof messageText !== "string" ||
+            messageText.trim() === ""
+        ) {
+            return;
+        }
+        const message = {
+            text: messageText.trim().slice(0, 500),
+            time: new Date().toISOString(),
+            senderId: socket.id
+        };
+        io.to(roomCode).emit("receive-message", message);
+    });
+    socket.on("disconnect", () => {
+        console.log("A user disconnected:",socket.id);
+    });
+});
 
 // Start the local development server
 app.listen(PORT, () => {
