@@ -1,6 +1,8 @@
 # Telvi 
 **Learn together. Anywhere**
 
+---
+
 So Telvi is a collaborative Web Application where you and your friends can chat, study, call or even watch lectures together. We're building this specifically for students so they can study distraction free with their friends and actuall enjoy studying.
 
 Telvi will be seriously helpful in times where you need to lock-in for those mid sems and final exams.
