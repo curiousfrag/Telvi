@@ -18,7 +18,7 @@ if (!savedRoom) {
     const sendMessageButton = document.getElementById("send-message");
     const chatMessages = document.getElementById("chat-messages");
 
-    // Display room information
+    
     if (roomTitle) {
         roomTitle.textContent = room.name;
     }
@@ -31,7 +31,7 @@ if (!savedRoom) {
         sideRoomCode.textContent = room.code;
     }
 
-    // Dark mode
+    
     function updateThemeButton() {
         if (!themeToggleButton) {
             return;
@@ -73,7 +73,7 @@ if (!savedRoom) {
         });
     }
 
-    // Copy room code
+    
     if (copyCodeButton) {
         copyCodeButton.addEventListener("click", async () => {
             try {
@@ -91,7 +91,7 @@ if (!savedRoom) {
         });
     }
 
-    // Leave room
+    
     if (leaveRoomButton) {
         leaveRoomButton.addEventListener("click", () => {
             localStorage.removeItem("currentRoom");
@@ -99,17 +99,17 @@ if (!savedRoom) {
         });
     }
 
-    // Connect to Socket.IO
+    
     const socket = io();
 
     socket.on("connect", () => {
         console.log("Connected to Socket.IO:", socket.id);
 
-        // Join the room based on its code
+        
         socket.emit("join-room", room.code);
     });
 
-    // Remove the empty-chat message
+    
     function removeEmptyMessage() {
         const emptyMessage = document.querySelector(
             ".empty-chat-message"
@@ -120,7 +120,7 @@ if (!savedRoom) {
         }
     }
 
-    // Display a received message
+
     function displayMessage(message) {
         if (!chatMessages) {
             return;
@@ -153,12 +153,12 @@ if (!savedRoom) {
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
-    // Receive messages from the server
+    
     socket.on("receive-message", (message) => {
         displayMessage(message);
     });
 
-    // Send a message
+    
     function sendMessage() {
         if (!messageInput) {
             return;

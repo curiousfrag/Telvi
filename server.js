@@ -1,15 +1,18 @@
+
 const express = require("express");
 const path = require("path");
 const http = require("http");
-const { server } = require("socket.io");
+const { Server } = require("socket.io");
 
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
- const  PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
- const rooms = [];
+
+const rooms = [];
+
 
 function generateRoomCode() {
     return Math.random()
@@ -28,9 +31,13 @@ app.get("/", (req, res) => {
 });
 
 
+app.get("/room", (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "room.html"));
+});
+
+
 app.post("/api/rooms", (req, res) => {
     const roomName = req.body.name;
-
 
     if (!roomName || roomName.trim() === "") {
         return res.status(400).json({
@@ -59,7 +66,9 @@ app.post("/api/rooms/join", (req, res) => {
 
     const normalizedCode = roomCode.trim().toUpperCase();
 
-    const room = rooms.find((room) => room.code === normalizedCode);
+    const room = rooms.find(
+        (room) => room.code === normalizedCode
+    );
 
     if (!room) {
         return res.status(404).json({
@@ -70,15 +79,18 @@ app.post("/api/rooms/join", (req, res) => {
     res.json(room);
 });
 
+
 io.on("connection", (socket) => {
     console.log("A user connected:", socket.id);
 
+    
     socket.on("join-room", (roomCode) => {
         if (typeof roomCode !== "string") {
             return;
         }
 
         const normalizedCode = roomCode.trim().toUpperCase();
+
         if (normalizedCode.length !== 6) {
             return;
         }
@@ -91,33 +103,38 @@ io.on("connection", (socket) => {
         );
     });
 
+    
     socket.on("send-message", (messageData) => {
         if (!messageData || typeof messageData !== "object") {
             return;
         }
-        const roomCode = socket.data.roomCode; 
+
+        const roomCode = socket.data.roomCode;
         const messageText = messageData.text;
 
         if (
-            !roomCode || 
+            !roomCode ||
             typeof messageText !== "string" ||
             messageText.trim() === ""
         ) {
             return;
         }
+
         const message = {
             text: messageText.trim().slice(0, 500),
             time: new Date().toISOString(),
             senderId: socket.id
         };
+
         io.to(roomCode).emit("receive-message", message);
     });
+
     socket.on("disconnect", () => {
-        console.log("A user disconnected:",socket.id);
+        console.log("A user disconnected:", socket.id);
     });
 });
 
-// Start the local development server
-app.listen(PORT, () => {
-    console.log(`Telvi is running on http://localhost:${PORT}`);
+
+server.listen(PORT, () => {
+    console.log(`Telvi is running at http://localhost:${PORT}`);
 });
