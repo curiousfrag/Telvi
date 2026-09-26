@@ -100,7 +100,9 @@ if (!savedRoom) {
     }
 
     
-    const socket = io();
+   const socket = io({
+    transports: ["websocket"]
+});
 
     console.log("Socket created:", socket);
 
