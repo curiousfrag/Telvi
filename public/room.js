@@ -102,6 +102,8 @@ if (!savedRoom) {
     
     const socket = io();
 
+    console.log("Socket created:", socket);
+
     socket.on("connect", () => {
         console.log("Connected to Socket.IO:", socket.id);
 

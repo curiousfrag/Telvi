@@ -1,4 +1,3 @@
-
 const express = require("express");
 const path = require("path");
 const http = require("http");
@@ -136,5 +135,5 @@ io.on("connection", (socket) => {
 
 
 server.listen(PORT, () => {
-    console.log(`Telvi is running at http://localhost:${PORT}`);
+    console.log(`Telvi is running on http://localhost:${PORT}`);
 });
