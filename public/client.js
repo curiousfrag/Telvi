@@ -45,11 +45,6 @@ if (themeToggleButton) {
     });
 }
 
-
-// ==============================
-// CREATE ROOM
-// ==============================
-
 const createRoomButton = document.getElementById("create-room");
 const roomNameInput = document.getElementById("room-name");
 const roomResult = document.getElementById("room-result");
@@ -107,11 +102,6 @@ if (createRoomButton) {
         }
     });
 }
-
-
-// ==============================
-// JOIN ROOM
-// ==============================
 
 const joinRoomButton = document.getElementById("join-room");
 const joinCodeInput = document.getElementById("join-code");
@@ -172,11 +162,6 @@ if (joinRoomButton) {
         }
     });
 }
-
-
-// ==============================
-// ROOM CODE INPUT
-// ==============================
 
 if (joinCodeInput) {
     joinCodeInput.addEventListener("input", () => {
