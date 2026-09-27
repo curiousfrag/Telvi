@@ -295,3 +295,222 @@ io.on("connection", (socket) => {
             }
         }
     );
+
+
+    // ==============================
+    // SEND MESSAGE
+    // ==============================
+
+    socket.on(
+        "send-message",
+        async (messageData) => {
+
+            if (
+                !messageData ||
+                typeof messageData !==
+                    "object"
+            ) {
+                return;
+            }
+
+            const roomCode =
+                socket.data.roomCode;
+
+            const messageText =
+                messageData.text;
+
+            const clientId =
+                messageData.clientId;
+
+
+            if (
+                !roomCode ||
+                typeof messageText !==
+                    "string" ||
+                messageText.trim() === "" ||
+                typeof clientId !==
+                    "string" ||
+                clientId.trim() === ""
+            ) {
+                return;
+            }
+
+
+            const cleanMessage =
+                messageText
+                    .trim()
+                    .slice(0, 500);
+
+
+            try {
+
+                // ==============================
+                // FIND ROOM
+                // ==============================
+
+                const roomResult =
+                    await pool.query(
+                        `SELECT id
+                         FROM rooms
+                         WHERE code = $1`,
+                        [roomCode]
+                    );
+
+                if (
+                    roomResult.rows.length ===
+                    0
+                ) {
+                    return;
+                }
+
+
+                const roomId =
+                    roomResult.rows[0].id;
+
+
+                // ==============================
+                // SAVE MESSAGE
+                // ==============================
+
+                const messageResult =
+                    await pool.query(
+                        `INSERT INTO messages
+                            (
+                                room_id,
+                                sender_id,
+                                content
+                            )
+                         VALUES
+                            ($1, $2, $3)
+                         RETURNING
+                            id,
+                            sender_id,
+                            content,
+                            created_at`,
+                        [
+                            roomId,
+                            clientId,
+                            cleanMessage
+                        ]
+                    );
+
+
+                const savedMessage =
+                    messageResult.rows[0];
+
+
+                // ==============================
+                // BROADCAST MESSAGE
+                // ==============================
+
+                io.to(roomCode).emit(
+                    "receive-message",
+                    {
+                        id:
+                            savedMessage.id,
+
+                        text:
+                            savedMessage.content,
+
+                        time:
+                            savedMessage.created_at,
+
+                        senderId:
+                            savedMessage.sender_id
+                    }
+                );
+
+            } catch (error) {
+
+                console.error(
+                    "Error saving message:",
+                    error
+                );
+
+            }
+        }
+    );
+
+
+    // ==============================
+    // TYPING INDICATOR
+    // ==============================
+
+    socket.on(
+        "typing",
+        (data) => {
+
+            const roomCode =
+                socket.data.roomCode;
+
+            if (!roomCode) {
+                return;
+            }
+
+            socket.to(roomCode).emit(
+                "user-typing",
+                {
+                    isTyping:
+                        Boolean(
+                            data?.isTyping
+                        )
+                }
+            );
+        }
+    );
+
+
+    // ==============================
+    // DISCONNECT
+    // ==============================
+
+    socket.on(
+        "disconnect",
+        () => {
+
+            console.log(
+                "A user disconnected:",
+                socket.id
+            );
+
+        }
+    );
+});
+
+
+// ==============================
+// DATABASE CONNECTION TEST
+// ==============================
+
+pool.query("SELECT NOW()")
+    .then(() => {
+
+        console.log(
+            "Connected to Neon PostgreSQL"
+        );
+
+    })
+    .catch((error) => {
+
+        console.error(
+            "Neon PostgreSQL connection failed:",
+            error
+        );
+
+    });
+
+
+// ==============================
+// START SERVER
+// ==============================
+
+server.listen(
+    PORT,
+    () => {
+
+        console.log(
+            `Telvi is running on http://localhost:${PORT}`
+        );
+
+    }
+);
