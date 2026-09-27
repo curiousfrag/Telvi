@@ -77,6 +77,7 @@ app.post("/api/rooms", async (req, res) => {
     }
 });
 
+
 app.post("/api/rooms/join", async (req, res) => {
     const roomCode = req.body.code;
 
@@ -117,8 +118,12 @@ app.post("/api/rooms/join", async (req, res) => {
 io.on("connection", (socket) => {
     console.log("A user connected:", socket.id);
 
-    
-    socket.on("join-room", (roomCode) => {
+
+    // ==============================
+    // JOIN ROOM
+    // ==============================
+
+    socket.on("join-room", async (roomCode) => {
         if (typeof roomCode !== "string") {
             return;
         }
@@ -135,10 +140,48 @@ io.on("connection", (socket) => {
         console.log(
             `${socket.id} joined room ${normalizedCode}`
         );
+
+
+        // Load previous messages from Neon
+        try {
+            const result = await pool.query(
+                `SELECT
+                    messages.id,
+                    messages.content,
+                    messages.sender_id,
+                    messages.created_at
+                 FROM messages
+                 JOIN rooms
+                    ON messages.room_id = rooms.id
+                 WHERE rooms.code = $1
+                 ORDER BY messages.created_at ASC`,
+                [normalizedCode]
+            );
+
+            socket.emit(
+                "message-history",
+                result.rows.map((message) => ({
+                    id: message.id,
+                    text: message.content,
+                    senderId: message.sender_id,
+                    time: message.created_at
+                }))
+            );
+
+        } catch (error) {
+            console.error(
+                "Error loading message history:",
+                error
+            );
+        }
     });
 
-    
-    socket.on("send-message", (messageData) => {
+
+    // ==============================
+    // SEND MESSAGE
+    // ==============================
+
+    socket.on("send-message", async (messageData) => {
         if (!messageData || typeof messageData !== "object") {
             return;
         }
@@ -154,29 +197,94 @@ io.on("connection", (socket) => {
             return;
         }
 
-        const message = {
-            text: messageText.trim().slice(0, 500),
-            time: new Date().toISOString(),
-            senderId: socket.id
-        };
+        const cleanMessage = messageText
+            .trim()
+            .slice(0, 500);
 
-        io.to(roomCode).emit("receive-message", message);
+
+        try {
+            // Find the database ID of the room
+            const roomResult = await pool.query(
+                `SELECT id
+                 FROM rooms
+                 WHERE code = $1`,
+                [roomCode]
+            );
+
+            if (roomResult.rows.length === 0) {
+                return;
+            }
+
+            const roomId = roomResult.rows[0].id;
+
+
+            // Save message to Neon
+            const messageResult = await pool.query(
+                `INSERT INTO messages
+                    (room_id, sender_id, content)
+                 VALUES ($1, $2, $3)
+                 RETURNING id, sender_id, content, created_at`,
+                [
+                    roomId,
+                    socket.id,
+                    cleanMessage
+                ]
+            );
+
+
+            const savedMessage = messageResult.rows[0];
+
+
+            // Broadcast the saved message
+            io.to(roomCode).emit(
+                "receive-message",
+                {
+                    id: savedMessage.id,
+                    text: savedMessage.content,
+                    time: savedMessage.created_at,
+                    senderId: savedMessage.sender_id
+                }
+            );
+
+        } catch (error) {
+            console.error(
+                "Error saving message:",
+                error
+            );
+        }
     });
 
+
+    // ==============================
+    // DISCONNECT
+    // ==============================
+
     socket.on("disconnect", () => {
-        console.log("A user disconnected:", socket.id);
+        console.log(
+            "A user disconnected:",
+            socket.id
+        );
     });
 });
 
+
+// Test Neon connection
 pool.query("SELECT NOW()")
     .then(() => {
-        console.log("Connected to Neon PostgreSQL");
+        console.log(
+            "Connected to Neon PostgreSQL"
+        );
     })
     .catch((error) => {
-        console.error("Neon PostgreSQL connection failed:", error);
+        console.error(
+            "Neon PostgreSQL connection failed:",
+            error
+        );
     });
 
 
 server.listen(PORT, () => {
-    console.log(`Telvi is running on http://localhost:${PORT}`);
+    console.log(
+        `Telvi is running on http://localhost:${PORT}`
+    );
 });
