@@ -154,3 +154,19 @@ if (!savedRoom) {
             }
         );
     }
+  // ==============================
+    // LEAVE ROOM
+    // ==============================
+
+    if (leaveRoomButton) {
+        leaveRoomButton.addEventListener(
+            "click",
+            () => {
+                localStorage.removeItem(
+                    "currentRoom"
+                );
+
+                window.location.href = "/";
+            }
+        );
+    }
