@@ -1,30 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>Study Room — Telvi</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="style.css">
+
 </head>
+
 
 <body class="room-page">
 
-    
+
+
+
     <header class="room-header">
 
         <div class="room-info">
-            <h1 id="room-title">Study Room</h1>
-            <p id="room-code-display">Room code: ------</p>
+
+            <h1 id="room-title">
+                Study Room
+            </h1>
+
+            <p id="room-code-display">
+                Room code: ------
+            </p>
+
         </div>
 
-        
-        <div class="room-brand" aria-label="Telvi">
-            <span>Telvi</span><span class="brand-dot">.</span>
+
+        <div
+            class="room-brand"
+            aria-label="Telvi">
+
+            <span>Telvi</span>
+            <span class="brand-dot">.</span>
+
         </div>
 
-        
+
         <div class="room-header-actions">
 
             <button
@@ -32,21 +55,29 @@
                 class="theme-toggle"
                 type="button"
                 aria-label="Toggle dark mode">
+
                 ☾
+
             </button>
+
 
             <button
                 id="copy-code"
                 class="secondary-button"
                 type="button">
+
                 Copy Room Code
+
             </button>
+
 
             <button
                 id="leave-room"
                 class="danger-button"
                 type="button">
+
                 Leave Room
+
             </button>
 
         </div>
@@ -54,44 +85,63 @@
     </header>
 
 
-    
     <main class="room-container">
 
-        
+
         <section class="chat-panel">
 
+
             <div class="panel-header">
-                <h2>Room Chat</h2>
+
+                <h2>
+                    Room Chat
+                </h2>
+
                 <span class="online-indicator">
                     ● Local session
                 </span>
+
             </div>
+
+
 
             <div
                 id="chat-messages"
                 class="chat-messages">
 
                 <p class="empty-chat-message">
-                    No messages yet. Start the conversation!
+
+                    No messages yet.
+                    Start the conversation!
+
                 </p>
 
             </div>
 
-            
+
+            <div
+                id="typing-indicator"
+                class="typing-indicator">
+            </div>
+
+
             <div class="message-input-area">
 
-                <input
-                    type="text"
+                <textarea
                     id="message-input"
                     placeholder="Type a message..."
                     maxlength="500"
-                    autocomplete="off">
+                    rows="1"
+                    autocomplete="off"></textarea>
+
 
                 <button
                     id="send-message"
                     class="primary-button"
                     type="button">
+
                     Send
+
                 </button>
 
             </div>
@@ -99,38 +149,51 @@
         </section>
 
 
-        
         <aside class="side-panel">
 
+
             <section class="feature-card">
-                <h3>Study Tools</h3>
+
+                <h3>
+                    Study Tools
+                </h3>
 
                 <p>
-                    More collaborative tools are coming soon.
+                    More collaborative tools
+                    are coming soon.
                 </p>
+
             </section>
 
 
+
             <section class="feature-card">
 
-                <h3>Room Information</h3>
+                <h3>
+                    Room Information
+                </h3>
 
                 <p>
-                    Share your room code with your study partners.
+                    Share your room code
+                    with your study partners.
                 </p>
+
 
                 <strong id="side-room-code">
                     ------
                 </strong>
 
             </section>
-            
+
+
         </aside>
 
     </main>
 
     <script src="/socket.io/socket.io.js"></script>
+
     <script src="room.js"></script>
 
 </body>
+
 </html>
