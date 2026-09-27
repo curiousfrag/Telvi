@@ -1,3 +1,9 @@
+const dotenv = require("dotenv");
+
+dotenv.config({
+    path: ".env.local"
+});
+
 const express = require("express");
 const path = require("path");
 const http = require("http");
@@ -7,10 +13,16 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
+const { Pool } = require("pg");
+
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+        rejectUnauthorized: false
+    }
+});
+
 const PORT = process.env.PORT || 3000;
-
-
-const rooms = [];
 
 
 function generateRoomCode() {
@@ -35,7 +47,7 @@ app.get("/room", (req, res) => {
 });
 
 
-app.post("/api/rooms", (req, res) => {
+app.post("/api/rooms", async (req, res) => {
     const roomName = req.body.name;
 
     if (!roomName || roomName.trim() === "") {
@@ -44,17 +56,28 @@ app.post("/api/rooms", (req, res) => {
         });
     }
 
-    const room = {
-        name: roomName.trim(),
-        code: generateRoomCode()
-    };
+    const roomCode = generateRoomCode();
 
-    rooms.push(room);
+    try {
+        const result = await pool.query(
+            `INSERT INTO rooms (name, code)
+             VALUES ($1, $2)
+             RETURNING id, name, code, created_at`,
+            [roomName.trim(), roomCode]
+        );
 
-    res.status(201).json(room);
+        res.status(201).json(result.rows[0]);
+
+    } catch (error) {
+        console.error("Error creating room:", error);
+
+        res.status(500).json({
+            error: "Failed to create room"
+        });
+    }
 });
 
-app.post("/api/rooms/join", (req, res) => {
+app.post("/api/rooms/join", async (req, res) => {
     const roomCode = req.body.code;
 
     if (!roomCode || roomCode.trim() === "") {
@@ -65,17 +88,29 @@ app.post("/api/rooms/join", (req, res) => {
 
     const normalizedCode = roomCode.trim().toUpperCase();
 
-    const room = rooms.find(
-        (room) => room.code === normalizedCode
-    );
+    try {
+        const result = await pool.query(
+            `SELECT id, name, code, created_at
+             FROM rooms
+             WHERE code = $1`,
+            [normalizedCode]
+        );
 
-    if (!room) {
-        return res.status(404).json({
-            error: "Room not found"
+        if (result.rows.length === 0) {
+            return res.status(404).json({
+                error: "Room not found"
+            });
+        }
+
+        res.json(result.rows[0]);
+
+    } catch (error) {
+        console.error("Error joining room:", error);
+
+        res.status(500).json({
+            error: "Failed to find room"
         });
     }
-
-    res.json(room);
 });
 
 
@@ -132,6 +167,14 @@ io.on("connection", (socket) => {
         console.log("A user disconnected:", socket.id);
     });
 });
+
+pool.query("SELECT NOW()")
+    .then(() => {
+        console.log("Connected to Neon PostgreSQL");
+    })
+    .catch((error) => {
+        console.error("Neon PostgreSQL connection failed:", error);
+    });
 
 
 server.listen(PORT, () => {
