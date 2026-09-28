@@ -65,6 +65,9 @@ if (!savedRoom) {
         );
 
 
+    // ==============================
+    // USER IDENTITY
+    // ==============================
 
     let clientId =
         localStorage.getItem(
@@ -83,6 +86,11 @@ if (!savedRoom) {
         );
 
     }
+
+
+    // ==============================
+    // ROOM INFORMATION
+    // ==============================
 
     if (roomTitle) {
 
@@ -106,7 +114,12 @@ if (!savedRoom) {
             room.code;
 
     }
-    
+
+
+    // ==============================
+    // DARK MODE
+    // ==============================
+
     function updateThemeButton() {
 
         if (!themeToggleButton) {
@@ -187,6 +200,11 @@ if (!savedRoom) {
 
     }
 
+
+    // ==============================
+    // COPY ROOM CODE
+    // ==============================
+
     if (copyCodeButton) {
 
         copyCodeButton.addEventListener(
@@ -233,6 +251,11 @@ if (!savedRoom) {
 
     }
 
+
+    // ==============================
+    // LEAVE ROOM
+    // ==============================
+
     if (leaveRoomButton) {
 
         leaveRoomButton.addEventListener(
@@ -252,6 +275,10 @@ if (!savedRoom) {
 
     }
 
+
+    // ==============================
+    // SOCKET.IO
+    // ==============================
 
     const socket =
         io({
@@ -285,6 +312,11 @@ if (!savedRoom) {
         }
     );
 
+
+    // ==============================
+    // REMOVE EMPTY MESSAGE
+    // ==============================
+
     function removeEmptyMessage() {
 
         const emptyMessage =
@@ -300,6 +332,11 @@ if (!savedRoom) {
         }
 
     }
+
+
+    // ==============================
+    // FORMAT TIME
+    // ==============================
 
     function formatMessageTime(
         time
@@ -317,6 +354,10 @@ if (!savedRoom) {
 
     }
 
+
+    // ==============================
+    // DISPLAY MESSAGE
+    // ==============================
 
     function displayMessage(
         message
@@ -413,6 +454,11 @@ if (!savedRoom) {
 
     }
 
+
+    // ==============================
+    // LOAD MESSAGE HISTORY
+    // ==============================
+
     socket.on(
         "message-history",
         (messages) => {
@@ -445,6 +491,10 @@ if (!savedRoom) {
     );
 
 
+    // ==============================
+    // RECEIVE NEW MESSAGE
+    // ==============================
+
     socket.on(
         "receive-message",
         (message) => {
@@ -456,6 +506,10 @@ if (!savedRoom) {
         }
     );
 
+
+    // ==============================
+    // SEND MESSAGE
+    // ==============================
 
     function sendMessage() {
 
@@ -521,6 +575,12 @@ if (!savedRoom) {
 
     }
 
+
+    // ==============================
+    // ENTER TO SEND
+    // SHIFT + ENTER = NEW LINE
+    // ==============================
+
     if (messageInput) {
 
         messageInput.addEventListener(
@@ -542,6 +602,11 @@ if (!savedRoom) {
         );
 
     }
+
+
+    // ==============================
+    // TYPING INDICATOR
+    // ==============================
 
     let typingTimeout;
 
@@ -618,6 +683,11 @@ if (!savedRoom) {
 
         }
     );
+
+
+    // ==============================
+    // CONNECTION ERRORS
+    // ==============================
 
     socket.on(
         "connect_error",

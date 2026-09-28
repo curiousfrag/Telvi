@@ -24,7 +24,9 @@ const pool = new Pool({
 const PORT = process.env.PORT || 3000;
 
 
-
+// ==============================
+// ROOM CODE
+// ==============================
 
 function generateRoomCode() {
     return Math.random()
@@ -34,6 +36,9 @@ function generateRoomCode() {
 }
 
 
+// ==============================
+// EXPRESS
+// ==============================
 
 app.use(express.json());
 
@@ -44,6 +49,9 @@ app.use(
 );
 
 
+// ==============================
+// PAGES
+// ==============================
 
 app.get("/", (req, res) => {
     res.sendFile(
@@ -66,6 +74,9 @@ app.get("/room", (req, res) => {
 });
 
 
+// ==============================
+// CREATE ROOM
+// ==============================
 
 app.post("/api/rooms", async (req, res) => {
     const roomName = req.body.name;
@@ -117,6 +128,9 @@ app.post("/api/rooms", async (req, res) => {
 });
 
 
+// ==============================
+// JOIN ROOM
+// ==============================
 
 app.post(
     "/api/rooms/join",
@@ -177,6 +191,9 @@ app.post(
 );
 
 
+// ==============================
+// SOCKET.IO
+// ==============================
 
 io.on("connection", (socket) => {
 
@@ -186,6 +203,9 @@ io.on("connection", (socket) => {
     );
 
 
+    // ==============================
+    // JOIN ROOM
+    // ==============================
 
     socket.on(
         "join-room",
@@ -222,6 +242,9 @@ io.on("connection", (socket) => {
             );
 
 
+            // ==============================
+            // LOAD MESSAGE HISTORY
+            // ==============================
 
             try {
 
@@ -274,6 +297,9 @@ io.on("connection", (socket) => {
     );
 
 
+    // ==============================
+    // SEND MESSAGE
+    // ==============================
 
     socket.on(
         "send-message",
@@ -318,6 +344,9 @@ io.on("connection", (socket) => {
 
             try {
 
+                // ==============================
+                // FIND ROOM
+                // ==============================
 
                 const roomResult =
                     await pool.query(
@@ -339,6 +368,9 @@ io.on("connection", (socket) => {
                     roomResult.rows[0].id;
 
 
+                // ==============================
+                // SAVE MESSAGE
+                // ==============================
 
                 const messageResult =
                     await pool.query(
@@ -367,6 +399,9 @@ io.on("connection", (socket) => {
                     messageResult.rows[0];
 
 
+                // ==============================
+                // BROADCAST MESSAGE
+                // ==============================
 
                 io.to(roomCode).emit(
                     "receive-message",
@@ -397,6 +432,9 @@ io.on("connection", (socket) => {
     );
 
 
+    // ==============================
+    // TYPING INDICATOR
+    // ==============================
 
     socket.on(
         "typing",
@@ -422,6 +460,9 @@ io.on("connection", (socket) => {
     );
 
 
+    // ==============================
+    // DISCONNECT
+    // ==============================
 
     socket.on(
         "disconnect",
@@ -437,6 +478,9 @@ io.on("connection", (socket) => {
 });
 
 
+// ==============================
+// DATABASE CONNECTION TEST
+// ==============================
 
 pool.query("SELECT NOW()")
     .then(() => {
@@ -455,6 +499,10 @@ pool.query("SELECT NOW()")
 
     });
 
+
+// ==============================
+// START SERVER
+// ==============================
 
 server.listen(
     PORT,
