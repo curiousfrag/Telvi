@@ -1,4 +1,3 @@
-
 :root {
     --background: #f7f3ea;
     --surface: #ffffff;
@@ -12,7 +11,8 @@
 
     --danger: #c0392b;
 
-    --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    --shadow:
+        0 8px 24px rgba(0, 0, 0, 0.08);
 
     --soft-shadow:
         8px 8px 18px rgba(0, 0, 0, 0.045),
@@ -22,7 +22,9 @@
         inset 2px 2px 5px rgba(0, 0, 0, 0.035);
 }
 
+
 body.dark {
+
     --background: #171717;
     --surface: #242424;
     --surface-soft: #303030;
@@ -35,7 +37,8 @@ body.dark {
 
     --danger: #ff6b5e;
 
-    --shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    --shadow:
+        0 8px 24px rgba(0, 0, 0, 0.3);
 
     --soft-shadow:
         8px 8px 18px rgba(0, 0, 0, 0.25),
@@ -50,542 +53,1140 @@ body.dark {
     box-sizing: border-box;
 }
 
+
 body {
+
     margin: 0;
+
     min-height: 100vh;
 
-    background: var(--background);
-    color: var(--text);
+    background:
+        var(--background);
 
-    font-family: Arial, Helvetica, sans-serif;
+    color:
+        var(--text);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
     transition:
         background 0.2s ease,
         color 0.2s ease;
 }
 
+
 button,
-input {
+input,
+textarea {
+
     font: inherit;
+
 }
 
+
 button {
+
     cursor: pointer;
+
 }
+
 
 button:focus-visible,
-input:focus-visible {
-    outline: 2px solid var(--primary);
-    outline-offset: 3px;
+input:focus-visible,
+textarea:focus-visible {
+
+    outline:
+        2px solid var(--primary);
+
+    outline-offset:
+        3px;
+
 }
 
 
 button {
+
     transition:
         transform 0.15s ease,
         opacity 0.15s ease,
         background 0.2s ease,
         box-shadow 0.2s ease;
+
 }
+
 
 button:hover {
-    transform: translateY(-2px);
+
+    transform:
+        translateY(-2px);
+
 }
 
+
 button:active {
-    transform: translateY(0);
+
+    transform:
+        translateY(0);
+
 }
+
+
 
 .primary-button,
 .secondary-button,
 .danger-button {
-    border-radius: 10px;
-    padding: 12px 16px;
-    font-weight: 700;
+
+    border-radius:
+        10px;
+
+    padding:
+        12px 16px;
+
+    font-weight:
+        700;
+
 }
+
 
 .primary-button {
-    border: none;
-    background: var(--primary);
-    color: var(--background);
 
-    box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.08);
+    border:
+        none;
+
+    background:
+        var(--primary);
+
+    color:
+        var(--background);
+
+    box-shadow:
+        3px 3px 7px rgba(0, 0, 0, 0.08);
+
 }
+
 
 .primary-button:hover {
-    background: var(--primary-hover);
+
+    background:
+        var(--primary-hover);
+
 }
+
 
 .secondary-button {
-    border: 1px solid var(--border);
-    background: var(--surface-soft);
-    color: var(--text);
 
-    box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.05);
+    border:
+        1px solid var(--border);
+
+    background:
+        var(--surface-soft);
+
+    color:
+        var(--text);
+
+    box-shadow:
+        3px 3px 7px rgba(0, 0, 0, 0.05);
+
 }
+
 
 .danger-button {
-    border: none;
-    background: var(--danger);
-    color: white;
 
-    box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.08);
+    border:
+        none;
+
+    background:
+        var(--danger);
+
+    color:
+        white;
+
+    box-shadow:
+        3px 3px 7px rgba(0, 0, 0, 0.08);
+
 }
+
 
 .primary-button:active,
 .secondary-button:active,
 .danger-button:active {
-    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.12);
+
+    box-shadow:
+        inset 2px 2px 5px rgba(0, 0, 0, 0.12);
+
 }
 
 
 .theme-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 10;
 
-    width: 42px;
-    height: 42px;
+    position:
+        fixed;
 
-    border: 1px solid var(--border);
-    border-radius: 50%;
+    top:
+        20px;
 
-    background: var(--surface);
-    color: var(--text);
+    right:
+        20px;
 
-    font-size: 20px;
+    z-index:
+        10;
 
-    box-shadow: var(--soft-shadow);
+    width:
+        42px;
+
+    height:
+        42px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        50%;
+
+    background:
+        var(--surface);
+
+    color:
+        var(--text);
+
+    font-size:
+        20px;
+
+    box-shadow:
+        var(--soft-shadow);
+
 }
+
 
 .theme-toggle:hover {
-    transform: translateY(-2px);
+
+    transform:
+        translateY(-2px);
+
 }
+
 
 
 .landing-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 
-    padding: 70px 20px 40px;
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    padding:
+        70px 20px 40px;
+
 }
+
 
 .main-header {
-    margin-bottom: 42px;
-    text-align: center;
+
+    margin-bottom:
+        42px;
+
+    text-align:
+        center;
+
 }
+
 
 .main-header h1 {
-    margin: 0;
 
-    font-size: 56px;
-    font-weight: 900;
-    letter-spacing: -3px;
+    margin:
+        0;
+
+    font-size:
+        56px;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        -3px;
+
 }
+
 
 .main-header h1::after {
-    content: ".";
-    color: var(--primary);
+
+    content:
+        ".";
+
+    color:
+        var(--primary);
+
 }
+
 
 .main-header p {
-    margin-top: 12px;
 
-    color: var(--muted-text);
-    font-size: 16px;
+    margin-top:
+        12px;
+
+    color:
+        var(--muted-text);
+
+    font-size:
+        16px;
+
 }
+
 
 .landing-container {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 20px;
 
-    width: 100%;
-    max-width: 760px;
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap:
+        20px;
+
+    width:
+        100%;
+
+    max-width:
+        760px;
+
 }
+
 
 .room-card {
-    padding: 28px;
 
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 18px;
+    padding:
+        28px;
 
-    box-shadow: var(--soft-shadow);
+    background:
+        var(--surface);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        18px;
+
+    box-shadow:
+        var(--soft-shadow);
+
 }
+
 
 .room-card h2 {
-    margin: 0 0 12px;
-    font-size: 22px;
+
+    margin:
+        0 0 12px;
+
+    font-size:
+        22px;
+
 }
+
 
 .card-description {
-    min-height: 48px;
 
-    margin-bottom: 22px;
+    min-height:
+        48px;
 
-    color: var(--muted-text);
-    font-size: 14px;
-    line-height: 1.5;
+    margin-bottom:
+        22px;
+
+    color:
+        var(--muted-text);
+
+    font-size:
+        14px;
+
+    line-height:
+        1.5;
+
 }
+
 
 .room-card input {
-    width: 100%;
 
-    padding: 13px;
-    margin-bottom: 12px;
+    width:
+        100%;
 
-    border: 1px solid var(--border);
-    border-radius: 10px;
+    padding:
+        13px;
 
-    background: var(--surface-soft);
-    color: var(--text);
+    margin-bottom:
+        12px;
 
-    box-shadow: var(--inset-shadow);
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        10px;
+
+    background:
+        var(--surface-soft);
+
+    color:
+        var(--text);
+
+    box-shadow:
+        var(--inset-shadow);
+
 }
+
 
 .room-card input::placeholder,
-.message-input-area input::placeholder {
-    color: var(--muted-text);
+.message-input-area input::placeholder,
+.message-input-area textarea::placeholder {
+
+    color:
+        var(--muted-text);
+
 }
+
 
 .room-card input:focus {
-    border-color: var(--primary);
-    outline: none;
+
+    border-color:
+        var(--primary);
+
+    outline:
+        none;
+
 }
+
 
 .room-card .primary-button {
-    width: 100%;
+
+    width:
+        100%;
+
 }
+
 
 .result-message {
-    min-height: 18px;
 
-    margin: 12px 0 0;
+    min-height:
+        18px;
 
-    color: var(--muted-text);
-    font-size: 13px;
+    margin:
+        12px 0 0;
+
+    color:
+        var(--muted-text);
+
+    font-size:
+        13px;
+
 }
+
 
 
 .room-page {
-    padding: 30px;
+
+    padding:
+        30px;
+
 }
+
 
 
 .room-header {
-    position: relative;
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
+    position:
+        relative;
 
-    max-width: 1250px;
-    min-height: 90px;
+    display:
+        flex;
 
-    margin: 0 auto 28px;
-    padding: 20px 24px;
+    justify-content:
+        space-between;
 
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 20px;
+    align-items:
+        center;
 
-    box-shadow: var(--soft-shadow);
+    gap:
+        20px;
+
+    max-width:
+        1250px;
+
+    min-height:
+        90px;
+
+    margin:
+        0 auto 28px;
+
+    padding:
+        20px 24px;
+
+    background:
+        var(--surface);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        20px;
+
+    box-shadow:
+        var(--soft-shadow);
+
 }
+
 
 .room-info h1 {
-    margin: 0 0 8px;
-    font-size: 28px;
+
+    margin:
+        0 0 8px;
+
+    font-size:
+        28px;
+
 }
 
-.room-info p {
-    margin: 0;
 
-    color: var(--muted-text);
-    font-size: 14px;
+.room-info p {
+
+    margin:
+        0;
+
+    color:
+        var(--muted-text);
+
+    font-size:
+        14px;
+
 }
 
 
 .room-brand {
-    position: absolute;
-    left: 50%;
 
-    transform: translateX(-50%);
+    position:
+        absolute;
 
-    color: var(--text);
+    left:
+        50%;
 
-    font-size: 30px;
-    font-weight: 900;
-    letter-spacing: -1.5px;
+    transform:
+        translateX(-50%);
 
-    white-space: nowrap;
+    color:
+        var(--text);
+
+    font-size:
+        30px;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        -1.5px;
+
+    white-space:
+        nowrap;
+
 }
 
+
 .brand-dot {
-    color: var(--primary);
+
+    color:
+        var(--primary);
+
 }
 
 
 .room-header-actions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
 
-    padding-right: 0;
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+
 }
 
+
 .room-header-actions .theme-toggle {
-    position: static;
 
-    width: 40px;
-    height: 40px;
+    position:
+        static;
 
-    box-shadow: var(--soft-shadow);
+    width:
+        40px;
+
+    height:
+        40px;
+
+    box-shadow:
+        var(--soft-shadow);
+
 }
 
 
 .room-container {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 280px;
-    gap: 24px;
 
-    max-width: 1250px;
-    margin: 0 auto;
+    display:
+        grid;
+
+    grid-template-columns:
+        minmax(0, 1fr) 280px;
+
+    gap:
+        24px;
+
+    max-width:
+        1250px;
+
+    margin:
+        0 auto;
+
 }
+
 
 .chat-panel,
 .feature-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 18px;
 
-    box-shadow: var(--soft-shadow);
+    background:
+        var(--surface);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        18px;
+
+    box-shadow:
+        var(--soft-shadow);
+
 }
+
 
 .chat-panel {
-    display: flex;
-    flex-direction: column;
 
-    min-height: 600px;
+    display:
+        flex;
 
-    overflow: hidden;
+    flex-direction:
+        column;
+
+    min-height:
+        600px;
+
+    overflow:
+        hidden;
+
 }
+
 
 .panel-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 
-    padding: 20px;
+    display:
+        flex;
 
-    border-bottom: 1px solid var(--border);
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+    padding:
+        20px;
+
+    border-bottom:
+        1px solid var(--border);
+
 }
+
 
 .panel-header h2 {
-    margin: 0;
-    font-size: 20px;
+
+    margin:
+        0;
+
+    font-size:
+        20px;
+
 }
 
+
 .online-indicator {
-    color: var(--muted-text);
-    font-size: 12px;
+
+    color:
+        var(--muted-text);
+
+    font-size:
+        12px;
+
 }
 
 
 .chat-messages {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    gap: 12px;
 
-    min-height: 400px;
-    max-height: 500px;
+    display:
+        flex;
 
-    overflow-y: auto;
+    flex:
+        1;
 
-    padding: 20px;
+    flex-direction:
+        column;
+
+    gap:
+        12px;
+
+    min-height:
+        400px;
+
+    max-height:
+        500px;
+
+    overflow-y:
+        auto;
+
+    padding:
+        20px;
+
 }
 
-.empty-chat-message {
-    margin: auto;
 
-    color: var(--muted-text);
-    text-align: center;
+.empty-chat-message {
+
+    margin:
+        auto;
+
+    color:
+        var(--muted-text);
+
+    text-align:
+        center;
+
 }
 
 .message-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
 
-    max-width: 80%;
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    max-width:
+        75%;
+
 }
 
+
+.other-message {
+
+    align-self:
+        flex-start;
+
+    align-items:
+        flex-start;
+
+}
+
+
+.own-message {
+
+    align-self:
+        flex-end;
+
+    align-items:
+        flex-end;
+
+}
+
+
 .chat-message {
-    margin: 0;
-    padding: 12px 15px;
 
-    border-radius: 12px;
+    margin:
+        0;
 
-    background: var(--surface-soft);
-    color: var(--text);
+    padding:
+        12px 15px;
 
-    overflow-wrap: anywhere;
+    border-radius:
+        14px;
 
-    box-shadow: var(--inset-shadow);
+    background:
+        var(--surface-soft);
+
+    color:
+        var(--text);
+
+    overflow-wrap:
+        anywhere;
+
+    box-shadow:
+        var(--inset-shadow);
+
+    white-space:
+        pre-wrap;
+
+}
+
+
+.own-message .chat-message {
+
+    background:
+        var(--primary);
+
+    color:
+        var(--background);
+
 }
 
 .message-time {
-    margin-top: 4px;
 
-    color: var(--muted-text);
-    font-size: 11px;
+    margin-top:
+        4px;
+
+    color:
+        var(--muted-text);
+
+    font-size:
+        11px;
+
 }
+
+.typing-indicator {
+
+    min-height:
+        18px;
+
+    padding:
+        0 16px 6px;
+
+    color:
+        var(--muted-text);
+
+    font-size:
+        12px;
+
+}
+
 
 .message-input-area {
-    display: flex;
-    gap: 10px;
 
-    padding: 16px;
+    display:
+        flex;
 
-    border-top: 1px solid var(--border);
+    gap:
+        10px;
+
+    padding:
+        16px;
+
+    border-top:
+        1px solid var(--border);
+
 }
 
-.message-input-area input {
-    flex: 1;
-    min-width: 0;
 
-    padding: 12px;
+.message-input-area textarea {
 
-    border: 1px solid var(--border);
-    border-radius: 10px;
+    flex:
+        1;
 
-    background: var(--surface-soft);
-    color: var(--text);
+    min-width:
+        0;
 
-    box-shadow: var(--inset-shadow);
+    min-height:
+        44px;
+
+    max-height:
+        120px;
+
+    resize:
+        none;
+
+    padding:
+        12px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        10px;
+
+    background:
+        var(--surface-soft);
+
+    color:
+        var(--text);
+
+    font-family:
+        inherit;
+
+    line-height:
+        1.4;
+
+    box-shadow:
+        var(--inset-shadow);
+
 }
 
-.message-input-area input:focus {
-    outline: none;
-    border-color: var(--primary);
-}
 
+.message-input-area textarea:focus {
+
+    outline:
+        none;
+
+    border-color:
+        var(--primary);
+
+}
 
 .side-panel {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        20px;
+
 }
+
 
 .feature-card {
-    padding: 22px;
+
+    padding:
+        22px;
+
 }
+
 
 .feature-card h3 {
-    margin-top: 0;
+
+    margin-top:
+        0;
+
 }
+
 
 .feature-card p {
-    color: var(--muted-text);
-    font-size: 14px;
-    line-height: 1.5;
+
+    color:
+        var(--muted-text);
+
+    font-size:
+        14px;
+
+    line-height:
+        1.5;
+
 }
 
+
 .feature-card strong {
-    display: block;
 
-    padding: 12px;
+    display:
+        block;
 
-    border-radius: 8px;
+    padding:
+        12px;
 
-    background: var(--surface-soft);
+    border-radius:
+        8px;
 
-    font-size: 20px;
-    letter-spacing: 3px;
-    text-align: center;
+    background:
+        var(--surface-soft);
 
-    box-shadow: var(--inset-shadow);
+    font-size:
+        20px;
+
+    letter-spacing:
+        3px;
+
+    text-align:
+        center;
+
+    box-shadow:
+        var(--inset-shadow);
+
 }
 
 
 @media (max-width: 800px) {
 
     .landing-container {
-        grid-template-columns: 1fr;
-        max-width: 500px;
+
+        grid-template-columns:
+            1fr;
+
+        max-width:
+            500px;
+
     }
+
 
     .room-container {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+            1fr;
+
     }
+
 
     .side-panel {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        display:
+            grid;
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
     }
+
 
     .room-header {
-        align-items: flex-start;
-        flex-direction: column;
 
-        padding-top: 75px;
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+        padding-top:
+            75px;
+
     }
+
 
     .room-brand {
-        top: 20px;
-        font-size: 28px;
+
+        top:
+            20px;
+
+        font-size:
+            28px;
+
     }
+
 
     .room-header-actions {
-        flex-wrap: wrap;
-        width: 100%;
+
+        flex-wrap:
+            wrap;
+
+        width:
+            100%;
+
     }
 
-    .room-header-actions .theme-toggle {
-        display: none;
+
+    .room-header-actions
+    .theme-toggle {
+
+        display:
+            none;
+
     }
+
 }
 
 
 @media (max-width: 520px) {
 
     .landing-page {
-        padding: 70px 15px 30px;
+
+        padding:
+            70px 15px 30px;
+
     }
+
 
     .main-header h1 {
-        font-size: 46px;
+
+        font-size:
+            46px;
+
     }
+
 
     .room-page {
-        padding: 15px;
+
+        padding:
+            15px;
+
     }
+
 
     .room-header {
-        padding: 70px 15px 20px;
+
+        padding:
+            70px 15px 20px;
+
     }
+
 
     .room-info h1 {
-        font-size: 24px;
+
+        font-size:
+            24px;
+
     }
+
 
     .room-header-actions {
-        width: 100%;
+
+        width:
+            100%;
+
     }
+
 
     .room-header-actions button {
-        flex: 1;
+
+        flex:
+            1;
+
     }
+
 
     .side-panel {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+            1fr; 
+
     }
 
+
     .message-input-area {
-        flex-direction: column;
+
+        flex-direction:
+            row;
+
     }
+
+
+    .message-input-area
+    .primary-button {
+
+        align-self:
+            flex-end;
+
+    }
+
+
+    .message-wrapper {
+
+        max-width:
+            85%;
+
+    }
+
 }

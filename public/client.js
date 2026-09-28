@@ -49,23 +49,8 @@ const createRoomButton = document.getElementById("create-room");
 const roomNameInput = document.getElementById("room-name");
 const roomResult = document.getElementById("room-result");
 
-function generateRoomCode() {
-    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    let code = "";
-
-    for (let i = 0; i < 6; i++) {
-        const randomIndex = Math.floor(
-            Math.random() * characters.length
-        );
-
-        code += characters[randomIndex];
-    }
-
-    return code;
-}
-
 if (createRoomButton) {
-    createRoomButton.addEventListener("click", () => {
+    createRoomButton.addEventListener("click", async () => {
         const roomName = roomNameInput.value.trim();
 
         if (roomName === "") {
@@ -73,14 +58,48 @@ if (createRoomButton) {
             return;
         }
 
-        const room = {
-            name: roomName,
-            code: generateRoomCode()
-        };
+        createRoomButton.disabled = true;
+        roomResult.textContent = "Creating room...";
 
-        localStorage.setItem("currentRoom", JSON.stringify(room));
+        try {
+            const response = await fetch("/api/rooms", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    name: roomName
+                })
+            });
 
-        window.location.href = "/room.html";
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || "Failed to create room.");
+            }
+
+            const room = {
+                id: data.id,
+                name: data.name,
+                code: data.code,
+                created_at: data.created_at
+            };
+
+            localStorage.setItem(
+                "currentRoom",
+                JSON.stringify(room)
+            );
+
+            window.location.href = "/room.html";
+
+        } catch (error) {
+            console.error("Create room error:", error);
+
+            roomResult.textContent =
+                error.message || "Failed to create room.";
+
+            createRoomButton.disabled = false;
+        }
     });
 }
 
@@ -89,7 +108,7 @@ const joinCodeInput = document.getElementById("join-code");
 const joinResult = document.getElementById("join-result");
 
 if (joinRoomButton) {
-    joinRoomButton.addEventListener("click", () => {
+    joinRoomButton.addEventListener("click", async () => {
         const roomCode = joinCodeInput.value.trim().toUpperCase();
 
         if (roomCode.length !== 6) {
@@ -99,18 +118,57 @@ if (joinRoomButton) {
             return;
         }
 
-        const room = {
-            name: "Joined Study Room",
-            code: roomCode
-        };
+        joinRoomButton.disabled = true;
+        joinResult.textContent = "Joining room...";
 
-        localStorage.setItem("currentRoom", JSON.stringify(room));
+        try {
+            const response = await fetch("/api/rooms/join", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    code: roomCode
+                })
+            });
 
-        window.location.href = "/room.html";
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || "Room not found.");
+            }
+
+            const room = {
+                id: data.id,
+                name: data.name,
+                code: data.code,
+                created_at: data.created_at
+            };
+
+            localStorage.setItem(
+                "currentRoom",
+                JSON.stringify(room)
+            );
+
+            window.location.href = "/room.html";
+
+        } catch (error) {
+            console.error("Join room error:", error);
+
+            joinResult.textContent =
+                error.message || "Failed to join room.";
+
+            joinRoomButton.disabled = false;
+        }
     });
 }
+
 if (joinCodeInput) {
     joinCodeInput.addEventListener("input", () => {
-        joinCodeInput.value = joinCodeInput.value.toUpperCase();
+        joinCodeInput.value =
+            joinCodeInput.value
+                .toUpperCase()
+                .replace(/[^A-Z0-9]/g, "")
+                .slice(0, 6);
     });
 }
