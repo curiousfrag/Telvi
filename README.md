@@ -19,7 +19,7 @@ We're planning on integrating many academic specific features such as pomodoro s
 - Clean and interactive UI
 - Toggle-able Dark mode  
 
->**Current status:** The chat system is currently locak only. real time messaging between different users will be implemented in future updates.
+>**Current status:** The chat system is currently local only. real time messaging between different users will be implemented in future updates.
 
 ## Tech Stack
 
